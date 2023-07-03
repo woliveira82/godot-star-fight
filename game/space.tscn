@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr6ndflmgksaj"]
+
+[ext_resource type="PackedScene" uid="uid://ckrxvfiay6i1o" path="res://game/star_system.tscn" id="1_hqcgp"]
+
+[node name="Space" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="StarSystem" parent="." instance=ExtResource("1_hqcgp")]
+position = Vector2(164, 472)
+
+[node name="StarSystem2" parent="." instance=ExtResource("1_hqcgp")]
+position = Vector2(361, 213)
+
+[node name="StarSystem3" parent="." instance=ExtResource("1_hqcgp")]
+position = Vector2(790, 416)
+
+[node name="StarSystem4" parent="." instance=ExtResource("1_hqcgp")]
+position = Vector2(1020, 146)
