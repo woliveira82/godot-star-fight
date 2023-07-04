@@ -12,6 +12,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="StarSystem" parent="." instance=ExtResource("1_hqcgp")]
 position = Vector2(164, 472)
+player = true
 
 [node name="StarSystem2" parent="." instance=ExtResource("1_hqcgp")]
 position = Vector2(361, 213)

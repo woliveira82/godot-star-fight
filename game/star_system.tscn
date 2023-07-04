@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ckrxvfiay6i1o"]
 
 [ext_resource type="Script" path="res://game/star_system.gd" id="1_6awp2"]
-[ext_resource type="Texture2D" uid="uid://c4hi8jmgfegto" path="res://icon.svg" id="1_hl62e"]
+[ext_resource type="Texture2D" uid="uid://iaagtrrocxiq" path="res://assets/gray.png" id="2_nfrtp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cx35s"]
 
@@ -15,7 +15,7 @@ shape = SubResource("CircleShape2D_cx35s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_hl62e")
+texture = ExtResource("2_nfrtp")
 
 [node name="Power" type="Label" parent="."]
 anchors_preset = 12
