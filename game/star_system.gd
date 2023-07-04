@@ -37,8 +37,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 			get_tree().call_group("ui_control", "star_click", self)
 
 		elif event.button_mask == 2:
-			print("ACTION CLICK")
-			print(event.button_index)
+			get_tree().call_group("ui_control", "star_action", self)
 
 
 func select():
