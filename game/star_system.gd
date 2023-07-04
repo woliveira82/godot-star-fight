@@ -13,6 +13,7 @@ const GRAY_STAR = preload("res://assets/gray.png")
 @export var player: bool = false
 
 var power: int = 0 : set = set_power
+var bridges := []
 
 
 func _ready():
