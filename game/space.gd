@@ -47,5 +47,3 @@ func _insert_bridge(origin: Vector2, destiny: Vector2):
 	
 	else:
 		bridges_directions.merge({origin: [destiny]})
-	
-	print(bridges_directions)
