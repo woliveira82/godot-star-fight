@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckrxvfiay6i1o"]
+[gd_scene load_steps=5 format=3 uid="uid://ckrxvfiay6i1o"]
 
 [ext_resource type="Script" path="res://game/star_system.gd" id="1_6awp2"]
-[ext_resource type="Texture2D" uid="uid://iaagtrrocxiq" path="res://assets/gray.png" id="2_nfrtp"]
+[ext_resource type="Texture2D" uid="uid://bm7gfx4c6rwr1" path="res://assets/selection.png" id="2_eq5gp"]
+[ext_resource type="Texture2D" uid="uid://dgmp2g0hha17a" path="res://assets/gray.png" id="2_nfrtp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cx35s"]
 
@@ -13,7 +14,12 @@ script = ExtResource("1_6awp2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_cx35s")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="StarSelection" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_eq5gp")
+
+[node name="StarColor" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_nfrtp")
 

@@ -5,12 +5,14 @@ const RED_STAR = preload("res://assets/red.png")
 const BLUE_STAR = preload("res://assets/blue.png")
 const GRAY_STAR = preload("res://assets/gray.png")
 
-@onready var sprite := $Sprite2D
+@onready var sprite := $StarColor
 @onready var timer := $Timer
 @onready var power_label := $Power
 
-var power: int = 0 : set = set_power
 @export var player: bool = false
+
+var power: int = 0 : set = set_power
+var selected: bool = false
 
 
 func _ready():

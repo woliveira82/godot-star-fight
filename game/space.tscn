@@ -10,15 +10,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="StarSystem" parent="." instance=ExtResource("1_hqcgp")]
+[node name="Stars" type="Node2D" parent="."]
+
+[node name="StarSystem" parent="Stars" instance=ExtResource("1_hqcgp")]
 position = Vector2(164, 472)
 player = true
 
-[node name="StarSystem2" parent="." instance=ExtResource("1_hqcgp")]
+[node name="StarSystem2" parent="Stars" instance=ExtResource("1_hqcgp")]
 position = Vector2(361, 213)
 
-[node name="StarSystem3" parent="." instance=ExtResource("1_hqcgp")]
+[node name="StarSystem3" parent="Stars" instance=ExtResource("1_hqcgp")]
 position = Vector2(790, 416)
 
-[node name="StarSystem4" parent="." instance=ExtResource("1_hqcgp")]
+[node name="StarSystem4" parent="Stars" instance=ExtResource("1_hqcgp")]
 position = Vector2(1020, 146)
