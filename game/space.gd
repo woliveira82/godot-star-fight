@@ -20,13 +20,11 @@ func star_action(star):
 		get_tree().call_group("stars", "unselect")
 		return
 
-	var origin = star_selected.position
-	var destiny = star.position
-	if star_selected.bridges.has(destiny):
+	if star_selected.bridges.has(star.position):
 		get_tree().call_group("stars", "unselect")
 		return
 
-	_insert_bridge(star_selected, destiny)
+	_insert_bridge(star_selected, star.position)
 
 
 func _insert_bridge(origin_star, destiny: Vector2):

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ses2pkia6i4x"]
+
+[ext_resource type="Script" path="res://game/unit.gd" id="1_3uwl5"]
+[ext_resource type="Texture2D" uid="uid://dgmp2g0hha17a" path="res://assets/gray.png" id="1_osmlp"]
+
+[node name="Unit" type="PathFollow2D"]
+loop = false
+script = ExtResource("1_3uwl5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_osmlp")
