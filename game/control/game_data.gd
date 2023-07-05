@@ -22,5 +22,5 @@ func set_player_team(color: String):
 	return player_team
 
 
-func get_team(team: TEAM):
-	return teams[team]
+func get_team(team_value: TEAM):
+	return teams[team_value]

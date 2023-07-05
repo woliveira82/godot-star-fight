@@ -32,7 +32,7 @@ func _on_timer_timeout():
 	timer.start(1.0 if team_data.is_player else 2.0)
 
 
-func _on_area_2d_input_event(viewport, event, shape_idx):
+func _on_area_2d_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_mask == 1:
 			get_tree().call_group("ui_control", "star_click", self)

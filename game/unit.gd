@@ -3,7 +3,7 @@ extends PathFollow2D
 @onready var sprite := $Sprite2D
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	progress += 1.0
 
 
