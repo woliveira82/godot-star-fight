@@ -1,24 +1,21 @@
 extends Node2D
 
-
-const RED_STAR = preload("res://assets/red.png")
-const BLUE_STAR = preload("res://assets/blue.png")
-const GRAY_STAR = preload("res://assets/gray.png")
-
 @onready var sprite := $StarColor
 @onready var selection := $StarSelection
 @onready var timer := $Timer
 @onready var power_label := $Power
 
-@export var player: bool = false
+@export var team : GameData.TEAM = GameData.TEAM.NEUTRAL
+var team_data = null
 
 var power: int = 0 : set = set_power
 var bridges := []
 
 
 func _ready():
-	if player:
-		sprite.texture = BLUE_STAR
+	team_data = GameData.get_team(team)
+	if team_data.is_player:
+		sprite.texture = team_data.texture
 
 
 func set_power(new_power):
@@ -32,7 +29,7 @@ func _on_timer_timeout():
 		bridge.send_unit()
 
 	power += 1
-	timer.start(1.0 if player else 2.0)
+	timer.start(1.0 if team_data.is_player else 2.0)
 
 
 func _on_area_2d_input_event(viewport, event, shape_idx):

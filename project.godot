@@ -14,3 +14,7 @@ config/name="Godot-Star-Fight"
 run/main_scene="res://game/space.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameData="*res://game/control/game_data.gd"

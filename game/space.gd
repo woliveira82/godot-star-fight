@@ -16,7 +16,7 @@ func star_action(star):
 	if not star_selected or star_selected == star:
 		return
 	
-	if not star_selected.player:
+	if not star_selected.team_data.is_player:
 		get_tree().call_group("stars", "unselect")
 		return
 
