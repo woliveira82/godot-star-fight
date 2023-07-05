@@ -14,6 +14,7 @@ func set_direction(origin: Vector2, destiny: Vector2):
 	path.curve.add_point(destiny)
 
 
-func send_unit():
+func send_unit(team: GameData.TEAM):
 	var new_unity = unity.instantiate()
 	path.add_child(new_unity)
+	new_unity.set_unit(team)

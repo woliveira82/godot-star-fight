@@ -26,7 +26,7 @@ func set_power(new_power):
 
 func _on_timer_timeout():
 	for bridge in bridges:
-		bridge.send_unit()
+		bridge.send_unit(team)
 
 	power += 1
 	timer.start(1.0 if team_data.is_player else 2.0)
