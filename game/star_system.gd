@@ -8,7 +8,8 @@ extends Node2D
 @export var team : GameData.TEAM = GameData.TEAM.NEUTRAL
 var team_data = null
 
-var power: int = 0 : set = set_power
+@export var max_power: int = 30
+var power: int = 1 : set = set_power
 var _bridges := []
 
 
@@ -18,7 +19,7 @@ func _ready():
 
 
 func set_power(new_power):
-	power = new_power
+	power = clamp(new_power, 0, max_power)
 	if power_label:
 		power_label.text = str(power)
 
@@ -73,5 +74,5 @@ func _on_area_2d_input_event(_viewport, event, _shape_idx):
 func _on_area_2d_2_area_entered(area):
 	if area.team != team:
 		power -= 1
-		if power <= 0:
+		if power == 0:
 			set_team(area.team)
