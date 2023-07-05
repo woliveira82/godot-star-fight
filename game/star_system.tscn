@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckrxvfiay6i1o"]
+[gd_scene load_steps=6 format=3 uid="uid://ckrxvfiay6i1o"]
 
 [ext_resource type="Script" path="res://game/star_system.gd" id="1_6awp2"]
 [ext_resource type="Texture2D" uid="uid://bm7gfx4c6rwr1" path="res://assets/selection.png" id="2_eq5gp"]
@@ -7,10 +7,14 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_cx35s"]
 radius = 31.0644
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_n7s7f"]
+radius = 21.0
+
 [node name="StarSystem" type="Node2D" groups=["stars"]]
 script = ExtResource("1_6awp2")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_cx35s")
@@ -42,5 +46,13 @@ horizontal_alignment = 1
 wait_time = 2.0
 autostart = true
 
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("CircleShape2D_n7s7f")
+
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]

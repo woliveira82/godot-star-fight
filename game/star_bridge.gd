@@ -5,13 +5,19 @@ var unity = preload("res://game/unit.tscn")
 @onready var line = $Line2D
 @onready var path = $Path2D
 
+var origin: Node2D = null
+var destiny: Node2D = null
 
-func set_direction(origin: Vector2, destiny: Vector2):
-	line.add_point(origin)
-	line.add_point(destiny)
-	
-	path.curve.add_point(origin)
-	path.curve.add_point(destiny)
+
+func set_direction(origin_star, destiny_star):
+	origin = origin_star
+	destiny = destiny_star
+
+	line.add_point(origin.position)
+	line.add_point(destiny.position)
+
+	path.curve.add_point(origin.position)
+	path.curve.add_point(destiny.position)
 
 
 func send_unit(team: GameData.TEAM):

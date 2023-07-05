@@ -20,16 +20,14 @@ func star_action(star):
 		get_tree().call_group("stars", "unselect")
 		return
 
-	if star_selected.bridges.has(star.position):
-		get_tree().call_group("stars", "unselect")
-		return
-
-	_insert_bridge(star_selected, star.position)
+	_insert_bridge(star_selected, star)
 
 
-func _insert_bridge(origin_star, destiny: Vector2):
+func _insert_bridge(origin_star, destiny_star):
 	var new_bridge = star_bridge.instantiate()
 	bridges.add_child(new_bridge)
-	new_bridge.set_direction(origin_star.position, destiny)
+	new_bridge.set_direction(origin_star, destiny_star)
+	if not origin_star.add_bridge(new_bridge):
+		new_bridge.queue_free()
+		
 	get_tree().call_group("stars", "unselect")
-	origin_star.bridges.append(new_bridge)

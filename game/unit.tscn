@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ses2pkia6i4x"]
+[gd_scene load_steps=5 format=3 uid="uid://ses2pkia6i4x"]
 
 [ext_resource type="Script" path="res://game/unit.gd" id="1_3uwl5"]
 [ext_resource type="Texture2D" uid="uid://dgmp2g0hha17a" path="res://assets/gray.png" id="1_osmlp"]
+[ext_resource type="Script" path="res://game/UnitArea.gd" id="3_qg7fj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w5ehk"]
+radius = 9.05539
 
 [node name="Unit" type="PathFollow2D"]
 loop = false
@@ -11,3 +15,11 @@ script = ExtResource("1_3uwl5")
 rotation = 1.5708
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_osmlp")
+
+[node name="UnitArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_qg7fj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnitArea"]
+shape = SubResource("CircleShape2D_w5ehk")

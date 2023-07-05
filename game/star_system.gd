@@ -9,13 +9,12 @@ extends Node2D
 var team_data = null
 
 var power: int = 0 : set = set_power
-var bridges := []
+var _bridges := []
 
 
 func _ready():
 	team_data = GameData.get_team(team)
-	if team_data.is_player:
-		sprite.texture = team_data.texture
+	sprite.texture = team_data.texture
 
 
 func set_power(new_power):
@@ -24,8 +23,38 @@ func set_power(new_power):
 		power_label.text = str(power)
 
 
+func set_team(new_team: GameData.TEAM):
+	team = new_team
+	team_data = GameData.get_team(new_team)
+	sprite.texture = team_data.texture
+
+
+func select():
+	selection.visible = true
+
+
+func unselect():
+	selection.visible = false
+
+
+func add_bridge(star_bridge: Node2D) -> bool:
+	if has_bridge_to(star_bridge.destiny):
+		return false
+	
+	_bridges.append(star_bridge)
+	return true
+
+
+func has_bridge_to(destiny_star: Node2D) -> bool:
+	for bridge in _bridges:
+		if bridge.destiny == destiny_star:
+			return true
+	
+	return false
+
+
 func _on_timer_timeout():
-	for bridge in bridges:
+	for bridge in _bridges:
 		bridge.send_unit(team)
 
 	power += 1
@@ -41,9 +70,8 @@ func _on_area_2d_input_event(_viewport, event, _shape_idx):
 			get_tree().call_group("ui_control", "star_action", self)
 
 
-func select():
-	selection.visible = true
-
-
-func unselect():
-	selection.visible = false
+func _on_area_2d_2_area_entered(area):
+	if area.team != team:
+		power -= 1
+		if power <= 0:
+			set_team(area.team)

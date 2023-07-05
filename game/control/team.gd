@@ -11,11 +11,11 @@ var texture = _GRAY_STAR
 func set_team(player: bool, color: String):
 	is_player = player
 	match color:
-		"red":
-			texture = _RED_STAR
-		"blue":
-			texture = _BLUE_STAR
 		"gray":
 			texture = _GRAY_STAR
+		"blue":
+			texture = _BLUE_STAR
+		"red":
+			texture = _RED_STAR
 		_:
 			texture = _GRAY_STAR
