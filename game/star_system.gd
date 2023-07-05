@@ -2,15 +2,20 @@ extends Node2D
 
 @onready var sprite := $StarColor
 @onready var selection := $StarSelection
-@onready var timer := $Timer
+@onready var growth_timer := $GrowthTimer
+@onready var attack_timer := $AttackTimer
 @onready var power_label := $Power
 
 @export var team : GameData.TEAM = GameData.TEAM.NEUTRAL
 var team_data = null
 
-@export var max_power: int = 30
-var power: int = 1 : set = set_power
+@export var growth_speed := 2
+@export var attack_speed := 2
+@export var attack_force := 1
+@export var max_power:= 30
+var power:= 1 : set = set_power
 var _bridges := []
+
 
 
 func _ready():
@@ -54,15 +59,19 @@ func has_bridge_to(destiny_star: Node2D) -> bool:
 	return false
 
 
-func _on_timer_timeout():
-	for bridge in _bridges:
-		bridge.send_unit(team)
-
+func _on_growth_timer_timeout():
 	power += 1
-	timer.start(1.0 if team_data.is_player else 2.0)
+	growth_timer.start(growth_speed)
 
 
-func _on_area_2d_input_event(_viewport, event, _shape_idx):
+func _on_attack_timer_timeout():
+	for bridge in _bridges:
+		bridge.send_unit(team, attack_force)
+	
+	attack_timer.start(attack_speed)
+
+
+func _on_ui_area_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_mask == 1:
 			get_tree().call_group("ui_control", "star_click", self)
@@ -71,8 +80,8 @@ func _on_area_2d_input_event(_viewport, event, _shape_idx):
 			get_tree().call_group("ui_control", "star_action", self)
 
 
-func _on_area_2d_2_area_entered(area):
+func _on_star_area_area_entered(area):
 	if area.team != team:
-		power -= 1
+		power -= area.force
 		if power == 0:
 			set_team(area.team)

@@ -20,7 +20,7 @@ func set_direction(origin_star, destiny_star):
 	path.curve.add_point(destiny.position)
 
 
-func send_unit(team: GameData.TEAM):
+func send_unit(team: GameData.TEAM, attack_force := 1):
 	var new_unity = unity.instantiate()
 	path.add_child(new_unity)
-	new_unity.set_unit(team)
+	new_unity.set_unit(team, attack_force)
