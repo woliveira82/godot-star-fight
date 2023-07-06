@@ -10,7 +10,8 @@ func _physics_process(_delta):
 		queue_free()
 
 
-func set_unit(team: GameData.TEAM, attack_force := 1):
+func set_unit(team: GameData.TEAM, origin_star: Node2D, attack_force := 1,):
 	sprite.texture = GameData.get_team(team).texture
 	area.team = team
+	area.origin = origin_star
 	area.force = attack_force

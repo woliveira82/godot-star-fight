@@ -80,8 +80,11 @@ func _on_ui_area_input_event(_viewport, event, _shape_idx):
 			get_tree().call_group("ui_control", "star_action", self)
 
 
-func _on_star_area_area_entered(area):
-	if area.team != team:
-		power -= area.force
+func _on_star_area_area_entered(unit_area):
+	if unit_area.team != team:
+		power -= unit_area.force
 		if power == 0:
-			set_team(area.team)
+			set_team(unit_area.team)
+	
+	elif unit_area.origin != self:
+		power += unit_area.force
