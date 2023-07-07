@@ -59,6 +59,18 @@ func has_bridge_to(destiny_star: Node2D) -> bool:
 	return false
 
 
+func delete_bridge_to(destiny_star, bridge_team: GameData.TEAM):
+	var index = -1
+	for idx in range(0, _bridges.size()):
+		if _bridges[idx].destiny == destiny_star:
+			index = idx
+			break
+	
+	if index >= 0:
+		_bridges[index].queue_free()
+		_bridges.remove_at(index)
+
+
 func _on_growth_timer_timeout():
 	power += 1
 	growth_timer.start(growth_speed)
@@ -66,7 +78,8 @@ func _on_growth_timer_timeout():
 
 func _on_attack_timer_timeout():
 	for bridge in _bridges:
-		bridge.send_unit(team, attack_force)
+		if bridge:
+			bridge.send_unit(team, attack_force)
 	
 	attack_timer.start(attack_speed)
 

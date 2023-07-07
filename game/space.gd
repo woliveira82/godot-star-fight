@@ -24,9 +24,11 @@ func star_action(star):
 
 
 func _insert_bridge(origin_star, destiny_star):
+	destiny_star.delete_bridge_to(origin_star, origin_star.team)
+	
 	var new_bridge = star_bridge.instantiate()
 	bridges.add_child(new_bridge)
-	new_bridge.set_direction(origin_star, destiny_star)
+	new_bridge.set_bridge(origin_star.team, origin_star, destiny_star)
 	if not origin_star.add_bridge(new_bridge):
 		new_bridge.queue_free()
 		
