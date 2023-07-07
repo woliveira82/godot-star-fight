@@ -1,10 +1,13 @@
 extends Node2D
 
+var star_bridge = preload("res://game/star_bridge.tscn")
+
 @onready var sprite := $StarColor
 @onready var selection := $StarSelection
 @onready var growth_timer := $GrowthTimer
 @onready var attack_timer := $AttackTimer
 @onready var power_label := $Power
+@onready var bridges := $Bridges
 
 @export var team : GameData.TEAM = GameData.TEAM.NEUTRAL
 var team_data = null
@@ -14,8 +17,6 @@ var team_data = null
 @export var attack_force := 1
 @export var max_power:= 30
 var power:= 1 : set = set_power
-var _bridges := []
-
 
 
 func _ready():
@@ -43,32 +44,28 @@ func unselect():
 	selection.visible = false
 
 
-func add_bridge(star_bridge: Node2D) -> bool:
-	if has_bridge_to(star_bridge.destiny):
-		return false
+func add_bridge_to(star: Node2D):
+	star.delete_bridge_to(self, team)
 	
-	_bridges.append(star_bridge)
-	return true
-
-
-func has_bridge_to(destiny_star: Node2D) -> bool:
-	for bridge in _bridges:
-		if bridge.destiny == destiny_star:
-			return true
-	
-	return false
+	var new_bridge = star_bridge.instantiate()
+	bridges.add_child(new_bridge)
+	new_bridge.set_bridge(team, self, star)
 
 
 func delete_bridge_to(destiny_star, bridge_team: GameData.TEAM):
-	var index = -1
-	for idx in range(0, _bridges.size()):
-		if _bridges[idx].destiny == destiny_star:
-			index = idx
-			break
-	
-	if index >= 0:
-		_bridges[index].queue_free()
-		_bridges.remove_at(index)
+	for bridge in bridges.get_children():
+		if bridge.destiny == destiny_star:
+			bridge.queue_free()
+		
+#	var index = -1
+#	for idx in range(0, _bridges.size()):
+#		if _bridges[idx].destiny == destiny_star:
+#			index = idx
+#			break
+#
+#	if index >= 0:
+#		_bridges[index].queue_free()
+#		_bridges.remove_at(index)
 
 
 func _on_growth_timer_timeout():
@@ -77,7 +74,7 @@ func _on_growth_timer_timeout():
 
 
 func _on_attack_timer_timeout():
-	for bridge in _bridges:
+	for bridge in bridges.get_children():
 		if bridge:
 			bridge.send_unit(team, attack_force)
 	

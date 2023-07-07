@@ -59,6 +59,8 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StarArea"]
 shape = SubResource("CircleShape2D_n7s7f")
 
+[node name="Bridges" type="Node2D" parent="."]
+
 [connection signal="input_event" from="UIArea" to="." method="_on_ui_area_input_event"]
 [connection signal="timeout" from="GrowthTimer" to="." method="_on_growth_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
