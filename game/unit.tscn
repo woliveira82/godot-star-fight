@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ses2pkia6i4x"]
 
 [ext_resource type="Script" path="res://game/unit.gd" id="1_3uwl5"]
-[ext_resource type="Texture2D" uid="uid://dgmp2g0hha17a" path="res://assets/gray.png" id="1_osmlp"]
+[ext_resource type="Texture2D" uid="uid://22evolqcr75a" path="res://assets/gray.png" id="1_osmlp"]
 [ext_resource type="Script" path="res://game/UnitArea.gd" id="3_qg7fj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w5ehk"]

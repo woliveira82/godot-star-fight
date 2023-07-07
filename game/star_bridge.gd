@@ -22,7 +22,16 @@ func set_bridge(new_team: GameData.TEAM, origin_star, destiny_star):
 	path.curve.add_point(destiny.position - origin.position)
 
 
-func send_unit(unit_team: GameData.TEAM, attack_force := 1):
+func get_units():
+	return path.get_children()
+
+
+func add_and_revert_units(units):
+	for unit in units:
+		send_unit(team, unit.force, 1 - unit.progress_ratio)
+
+
+func send_unit(unit_team: GameData.TEAM, attack_force := 1, progress = 0):
 	var new_unity = unity.instantiate()
 	path.add_child(new_unity)
-	new_unity.set_unit(unit_team, origin, attack_force)
+	new_unity.set_unit(unit_team, origin, attack_force, progress)

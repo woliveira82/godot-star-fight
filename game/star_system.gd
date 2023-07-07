@@ -44,28 +44,43 @@ func unselect():
 	selection.visible = false
 
 
-func add_bridge_to(star: Node2D):
-	star.delete_bridge_to(self, team)
+func get_bridge_to(star):
+	for bridge in bridges.get_children():
+		if bridge.destiny == star:
+			return bridge
 	
+	return null
+
+
+func add_bridge_to(star: Node2D):
+	for bridge in bridges.get_children():
+		if bridge.destiny == star:
+			return
+
 	var new_bridge = star_bridge.instantiate()
 	bridges.add_child(new_bridge)
 	new_bridge.set_bridge(team, self, star)
+
+	if star.team == team:
+		var reverted_bridge = star.get_bridge_to(self)
+		if reverted_bridge:
+			var units = reverted_bridge.get_units()
+			new_bridge.add_and_revert_units(units)
+			reverted_bridge.queue_free()
 
 
 func delete_bridge_to(destiny_star, bridge_team: GameData.TEAM):
 	for bridge in bridges.get_children():
 		if bridge.destiny == destiny_star:
 			bridge.queue_free()
-		
-#	var index = -1
-#	for idx in range(0, _bridges.size()):
-#		if _bridges[idx].destiny == destiny_star:
-#			index = idx
-#			break
-#
-#	if index >= 0:
-#		_bridges[index].queue_free()
-#		_bridges.remove_at(index)
+
+
+func revert_bridge_to(star: Node2D) -> Node2D:
+	for bridge in bridges.get_children():
+		if bridge.destiny == star:
+			return bridge
+
+	return null
 
 
 func _on_growth_timer_timeout():
