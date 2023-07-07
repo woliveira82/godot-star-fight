@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://ckrxvfiay6i1o"]
 
 [ext_resource type="Script" path="res://game/star_system.gd" id="1_6awp2"]
-[ext_resource type="Texture2D" uid="uid://bm7gfx4c6rwr1" path="res://assets/selection.png" id="2_eq5gp"]
-[ext_resource type="Texture2D" uid="uid://dgmp2g0hha17a" path="res://assets/gray.png" id="2_nfrtp"]
+[ext_resource type="Texture2D" uid="uid://dmlh2wxf42qng" path="res://assets/selection.png" id="2_eq5gp"]
+[ext_resource type="Texture2D" uid="uid://22evolqcr75a" path="res://assets/gray.png" id="2_nfrtp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cx35s"]
 radius = 31.0644
@@ -60,6 +60,7 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_n7s7f")
 
 [node name="Bridges" type="Node2D" parent="."]
+show_behind_parent = true
 
 [connection signal="input_event" from="UIArea" to="." method="_on_ui_area_input_event"]
 [connection signal="timeout" from="GrowthTimer" to="." method="_on_growth_timer_timeout"]
