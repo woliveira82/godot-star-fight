@@ -18,15 +18,14 @@ script = ExtResource("1_vyqkl")
 [node name="StarSystem" parent="Stars" instance=ExtResource("1_hqcgp")]
 position = Vector2(164, 472)
 team = 0
-attack_force = 5
+attack_force = 2
 
 [node name="StarSystem2" parent="Stars" instance=ExtResource("1_hqcgp")]
 position = Vector2(361, 213)
-attack_speed = 1
 
 [node name="StarSystem3" parent="Stars" instance=ExtResource("1_hqcgp")]
 position = Vector2(790, 416)
-growth_speed = 5
 
 [node name="StarSystem4" parent="Stars" instance=ExtResource("1_hqcgp")]
 position = Vector2(1020, 146)
+team = 2

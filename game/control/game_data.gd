@@ -10,16 +10,16 @@ enum TEAM {
 }
 
 var teams := {
-	TEAM.PLAYER: set_player_team("blue"),
+	TEAM.PLAYER: set_team("blue", true),
 	TEAM.NEUTRAL: team.new(),
+	TEAM.TEAM_1: set_team("red"),
 }
 
 
-func set_player_team(color: String):
-	var player_team = team.new()
-	player_team.set_team(true, color)
-	# teams[TEAM.PLAYER] = player_team
-	return player_team
+func set_team(color: String, player := false):
+	var new_team = team.new()
+	new_team.set_team(color, player)
+	return new_team
 
 
 func get_team(team_value: TEAM):

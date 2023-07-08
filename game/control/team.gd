@@ -8,7 +8,7 @@ var is_player: bool = false
 var texture = _GRAY_STAR
 
 
-func set_team(player: bool, color: String):
+func set_team(color: String, player: bool):
 	is_player = player
 	match color:
 		"gray":

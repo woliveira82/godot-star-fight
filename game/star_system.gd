@@ -69,12 +69,6 @@ func add_bridge_to(star: Node2D):
 			reverted_bridge.queue_free()
 
 
-func delete_bridge_to(destiny_star, bridge_team: GameData.TEAM):
-	for bridge in bridges.get_children():
-		if bridge.destiny == destiny_star:
-			bridge.queue_free()
-
-
 func revert_bridge_to(star: Node2D) -> Node2D:
 	for bridge in bridges.get_children():
 		if bridge.destiny == star:
