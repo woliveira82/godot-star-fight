@@ -34,6 +34,8 @@ func set_team(new_team: GameData.TEAM):
 	team = new_team
 	team_data = GameData.get_team(new_team)
 	sprite.texture = team_data.texture
+	for bridge in bridges.get_children():
+		bridge.queue_free()
 
 
 func select():

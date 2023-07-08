@@ -11,6 +11,7 @@ radius = 31.0644
 radius = 21.0
 
 [node name="StarSystem" type="Node2D" groups=["stars"]]
+z_index = 1
 script = ExtResource("1_6awp2")
 
 [node name="UIArea" type="Area2D" parent="."]
@@ -60,7 +61,7 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_n7s7f")
 
 [node name="Bridges" type="Node2D" parent="."]
-show_behind_parent = true
+z_index = -1
 
 [connection signal="input_event" from="UIArea" to="." method="_on_ui_area_input_event"]
 [connection signal="timeout" from="GrowthTimer" to="." method="_on_growth_timer_timeout"]
