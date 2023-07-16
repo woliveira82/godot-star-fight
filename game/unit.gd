@@ -39,7 +39,7 @@ func set_unit(
 	origin = origin_star
 	destiny = destiny_star
 	var direction = destiny.position - origin.position
-	sprite.rotate(direction.angle())
+	rotate(direction.angle())
 
 
 func _on_area_entered(area):
