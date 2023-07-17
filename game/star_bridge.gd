@@ -17,6 +17,7 @@ func set_bridge(new_team: GameData.TEAM, origin_star, destiny_star):
 
 	line.add_point(Vector2.ZERO)
 	line.add_point(destiny.position - origin.position)
+	line.default_color = GameData.get_team(team).rgb
 
 
 func get_units():
