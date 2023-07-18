@@ -2,8 +2,9 @@ extends Node2D
 
 var unity = preload("res://game/unit.tscn")
 
-@onready var line = $Line2D
-@onready var units = $Units
+@onready var line := $Line2D
+@onready var units := $Units
+@onready var ui_collision_shape := $UIArea/CollisionShape2D
 
 var team: GameData.TEAM
 var origin: Node2D = null
@@ -18,6 +19,11 @@ func set_bridge(new_team: GameData.TEAM, origin_star, destiny_star):
 	line.add_point(Vector2.ZERO)
 	line.add_point(destiny.position - origin.position)
 	line.default_color = GameData.get_team(team).rgb
+	
+	var bridge_vector = destiny_star.position - origin_star.position
+	ui_collision_shape.shape.size.x = bridge_vector.length() - 40.0
+	ui_collision_shape.position = bridge_vector / 2
+	ui_collision_shape.rotation = bridge_vector.angle()
 
 
 func get_units():
@@ -33,3 +39,9 @@ func send_unit(unit_team: GameData.TEAM, attack_force := 1, new_position := Vect
 	var new_unity = unity.instantiate()
 	units.add_child(new_unity)
 	new_unity.set_unit(unit_team, origin, destiny, attack_force, new_position)
+
+
+func _on_ui_area_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_mask == 2:
+			queue_free()

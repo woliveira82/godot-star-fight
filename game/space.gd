@@ -14,9 +14,9 @@ func star_action(star):
 	if not star_selected or star_selected == star:
 		return
 	
-#	if not star_selected.team_data.is_player:
-#		get_tree().call_group("stars", "unselect")
-#		return
+	if not star_selected.team_data.is_player:
+		get_tree().call_group("stars", "unselect")
+		return
 
 	star_selected.add_bridge_to(star)
 	get_tree().call_group("stars", "unselect")
