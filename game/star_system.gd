@@ -57,6 +57,7 @@ func get_bridge_to(star):
 func add_bridge_to(star: Node2D):
 	for bridge in bridges.get_children():
 		if bridge.destiny == star:
+			bridge.active = true
 			return
 
 	var new_bridge = star_bridge.instantiate()
